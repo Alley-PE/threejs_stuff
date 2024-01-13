@@ -6,12 +6,19 @@ const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+const mahCanvas = document.querySelector('#bg')
+let width = mahCanvas.offsetWidth
+let height = mahCanvas.offsetHeight
+
 const renderer = new THREE.WebGL1Renderer({
-  canvas: document.querySelector('#bg'),
+  antialias: true,
+  alpha: true,
 });
 
-renderer.setPixelRatio( window.devicePixelRatio );
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setPixelRatio( Math.min(window.devicePixelRatio, 2) );
+renderer.setSize( width, height );
+mahCanvas.appendChild(renderer.domElement)
+
 camera.position.setZ(30);
 
 const geometry = new THREE.TorusGeometry( 10, 3, 16, 100);
