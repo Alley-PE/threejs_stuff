@@ -1,0 +1,98 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+	    <title>Three.js Tutorial</title>
+
+<script 
+src="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js">
+</script>	    
+
+	        <style>
+		    canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                
+            }
+
+            .idfk {
+                width: 100px;
+                height: 100px;
+                background-color: aliceblue;
+            }
+		</style>
+   </head>
+
+       <body>
+     
+        <div id="idfk"></div>
+
+<script>
+
+function createMaterial() {
+  // create a texture loader.
+  const textureLoader = new TextureLoader();
+
+  // load a texture
+  const texture = textureLoader.load(
+    '/home/alvion/Documents/neocity/pot_ass/fence_white.png',
+  );
+
+  const material = new MeshStandardMaterial({
+    map: texture,
+  });
+
+  return material;
+}
+
+
+
+const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera
+    ( 100,( window.innerWidth)/(window.innerHeight), 0.1, 1000 );
+    
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    
+    camera.position.setZ(30);
+    
+    
+    const light = new THREE.PointLight(0xffffff);
+    light.position.set(-100,200,100);
+    scene.add(light); 
+    
+    const light2 = new THREE.PointLight(0xffffdd);
+    light2.position.set(100,-2000,-100);
+    scene.add(light2); 
+
+    const geometry = new THREE.TorusGeometry( 10, 3, 16, 100);
+    const material = new THREE.MeshStandardMaterial( { color: 0xFF6347 } ); 
+    const torus = new THREE.Mesh( geometry, material ); 
+
+    scene.add( torus )
+    
+
+    camera.position.z = 30;
+
+    const render = function () {
+
+        torus.rotation.x = 77;
+				requestAnimationFrame( render );
+
+				torus.rotation.y += 0.01
+				
+
+				renderer.render(scene, camera);
+			};
+
+			render();
+</script> 
+
+	</body>
+</html>
+          
