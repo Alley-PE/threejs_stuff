@@ -16,8 +16,14 @@ renderer.setSize(width, height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 threejsCanvas.appendChild(renderer.domElement)
 
+// load a texture, set wrap mode to repeat
+const texture = new THREE.TextureLoader().load( "everything.jpg" );
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set( 4, 4 );
+
 const geometry = new THREE.TorusGeometry( 10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial( { color: 0xFF6347, wireframe: true } ); 
+const material = new THREE.MeshStandardMaterial( { color: 0xFF6347, map: texture} ); 
 const torus = new THREE.Mesh( geometry, material ); 
 
 scene.add( torus );
@@ -38,6 +44,7 @@ function animate() {
   
    
     torus.rotation.y += 0.005;
+    torus.rotation.x += 0.005;
     
   
   
