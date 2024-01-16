@@ -14,8 +14,8 @@ const renderer = new THREE.WebGLRenderer({
   alpha: true,
 })
 
-renderer.setPixelRatio( Math.min(window.devicePixelRatio) );
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setPixelRatio( Math.min(window.devicePixelRatio) 2);
+renderer.setSize( width, height );
 threejsCanvas.appendChild(renderer.domElement)
 
 
