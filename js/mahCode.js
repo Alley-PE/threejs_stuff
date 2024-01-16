@@ -47,6 +47,19 @@ function animate() {
   
   animate()
 
+  window.addEventListener('resize', onResize)
+
+  function onResize() {
+    width = threejsCanvas.offsetWidth
+    height = threejsCanvas.offsetHeight
+
+    renderer.setSize(width, height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+  }
+
 
 
 
